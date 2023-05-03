@@ -21,6 +21,7 @@
   - [Run tests](#run-tests)
   - [Deployment](#triangular_flag_on_post-deployment)
 - [👥 Authors](#authors)
+- [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
@@ -133,6 +134,21 @@ N/A
 - GitHub: [@ashmalzahra](https://github.com/ashmalzahra)
 - Twitter: [@AshmalZahraa](https://twitter.com/AshmalZahraa)
 - LinkedIn: [ashmal-zahra](https://www.linkedin.com/in/ashmal-zahra)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- FUTURE FEATURES -->
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- [ ] **Processing data in models.**
+- [ ] **Setup and controllers.**
+- [ ] **Controllers specs.**
+- [ ] **Integration specs for Views and fixing n+1 problems.**
+- [ ] **Add Devise.**
+- [ ] **Add authorization rules.**
+- [ ] **Add API endpoints.**
+- [ ] **API documentation.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
