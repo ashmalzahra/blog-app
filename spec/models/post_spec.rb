@@ -32,7 +32,6 @@ RSpec.describe Post, type: :model do
     expect(subject).to be_valid
   end
 
-
   it 'comments_counter has to be greater or equal to 0, expected true' do
     subject.comments_counter = 1
     expect(subject).to be_valid
@@ -46,7 +45,6 @@ RSpec.describe Post, type: :model do
   it 'likes_counter has to be greater or equal to 0, expected true' do
     expect(subject).to be_valid
   end
-
 
   it 'likes_counter has to be greater or equal to 0, expected true' do
     subject.likes_counter = 1
