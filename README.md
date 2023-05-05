@@ -116,11 +116,28 @@ rails server
 ```
 
 ### Run Tests
+For rails +7, include the following in your gemfile in the development, test group:
+```
+group :development, :test do  
+  gem 'rspec-rails'
+end
+```
+then run: 
+```
+bundle install
+```
+
+To setup rspec, run the following:
+
+```
+rails generate rspec:install
+```
+
 
 To run the project tests, execute the following command:
 
 ```
-N/A
+rspec
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -141,7 +158,6 @@ N/A
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Processing data in models.**
 - [ ] **Setup and controllers.**
 - [ ] **Controllers specs.**
 - [ ] **Integration specs for Views and fixing n+1 problems.**
