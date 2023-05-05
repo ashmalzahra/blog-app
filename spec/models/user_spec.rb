@@ -23,12 +23,11 @@ RSpec.describe User, type: :model do
     expect(subject).to be_valid
   end
 
-  
+
   it 'posts_counter has to be greater or equal to 0, expected true' do
     subject.posts_counter = 1
     expect(subject).to be_valid
   end
-  after { subject.save }
 
   let(:user) { User.new(name: 'Tom', posts_counter: 0) }
 
