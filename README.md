@@ -72,7 +72,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [N/A]()
+- Run <code>rails s</code> to view the application in your browser
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
