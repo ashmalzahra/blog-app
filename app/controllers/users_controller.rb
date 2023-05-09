@@ -1,9 +1,9 @@
 class UsersConroller < ApplicationController
-    def index
-        @users = User.all
-    end
+  def index
+    @users = User.all
+  end
 
-    def show
-        puts params
-    end
+  def show
+    puts params
+  end
 end
