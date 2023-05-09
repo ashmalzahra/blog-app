@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe "Posts", type: :request do
-  describe "GET /index" do
+RSpec.describe 'Posts', type: :request do
+  describe 'GET /index' do
     it 'renders index template' do
       user = User.create(name: 'Ashmal', posts_counter: 0)
       get "/users/#{user.id}/posts"
       expect(response).to render_template(:index)
     end
 
-    it "returns http success" do
+    it 'returns http success' do
       user = User.create(name: 'Ashmal', posts_counter: 0)
       get "/users/#{user.id}/posts"
       expect(response).to be_successful

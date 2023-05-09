@@ -122,6 +122,12 @@ group :development, :test do
   gem 'rspec-rails'
 end
 ```
+and 
+
+```
+gem 'rails-controller-testing'
+```
+
 then run: 
 ```
 bundle install
