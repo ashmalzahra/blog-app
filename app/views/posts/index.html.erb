@@ -1,1 +1,38 @@
-<h1>Here is a list of posts for a given user</h1>
+<section class="user">
+  <card class="each-user">
+    <img src='<%= @user.photo %>'>
+    <div class="user-info">
+    <h2><%= @user.name %></h2><br>
+    <h4 class="post-num">Number of posts: <%= @user.posts_counter %> </h4>
+    </div>
+  </card>
+  <div class="posts-container">
+    <% @posts.each do |post| %>
+      <%= link_to "/users/#{@user.id}/posts/#{post.id}", remote: false do %>
+        <div class="comment-box">
+          <card class="post-data">
+            <div class="post-info">
+              <h2>Post <%= post.id %></h2>
+              <p> <%= post.text %> </p>
+              <div class="counters">
+                <h5 class="comment-num">Comments: <%= post.comments_counter %> </h5>
+                <h5 class="like-num">Likes: <%= post.likes_counter %> </h5>
+              </div>
+            </div>
+          </card>
+          <div class="comments-box">
+            <% if post.comments.empty? %>
+              <p> There are no comments on this post </p>
+            <% end %>
+            <% post.comments.each do |comment| %>
+              <p> <%= comment.author.name %>: <%= comment.text %> </p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="main-btn">
+    <p>Pagination</p>
+  </div>
+</section>
