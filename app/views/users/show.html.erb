@@ -15,7 +15,7 @@
       <%= link_to "/users/#{@user.id}/posts/#{post.id}", remote: false do %>
         <card class="post-data">
           <div class="post-info">
-            <h2>Post <%= post.id %></h2>
+            <h2> <%= post.title %></h2>
             <p> <%= post.text %> </p>
             <div class="counters">
               <h5 class="comment-num">Comments: <%= post.comments_counter %> </h5>
@@ -26,7 +26,7 @@
       <% end %>
     <% end %>
   </div>
-  <div class="all-posts">
+  <div class="main-btn">
     <%= link_to "/users/#{@user.id}/posts", remote: false do %>
       <p>See all posts </p>
     <% end %>
