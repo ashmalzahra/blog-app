@@ -12,11 +12,11 @@
         <div class="comment-box">
           <card class="post-data">
             <div class="post-info">
-              <h2> <%= post.title %></h2>
+              <h2><span id="test-<%= post.id %>"> <%= post.title %> </span></h2>
               <p> <%= post.text %> </p>
               <div class="counters">
-                <h5 class="comment-num">Comments: <%= post.comments_counter %> </h5>
-                <h5 class="like-num">Likes: <%= post.likes_counter %> </h5>
+                <h5 id="comments-<%= post.id %>" class="comment-num">Comments: <%= post.comments_counter %> </h5>
+                <h5 id="likes-<%= post.id %>"class="like-num">Likes: <%= post.likes_counter %> </h5>
               </div>
             </div>
           </card>

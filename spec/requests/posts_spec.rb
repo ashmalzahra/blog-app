@@ -17,7 +17,7 @@ RSpec.describe 'Posts', type: :request do
     it 'Test if users/:user_id/posts is rendering the text' do
       user = User.create(name: 'Ashmal', posts_counter: 0)
       get "/users/#{user.id}/posts"
-      expect(response.body).to include('Here is a list of posts for a given user')
+      expect(response.body).to include('Ashmal')
     end
   end
 
@@ -37,7 +37,7 @@ RSpec.describe 'Posts', type: :request do
 
     it 'Test if /users/:user_id/posts/:id is rendering the text' do
       get "/users/#{user.id}/posts/#{post.id}"
-      expect(response.body).to include('This is the detail view from a given post from the given user')
+      expect(response.body).to include('Comments', 'Add a comment')
     end
   end
 end
