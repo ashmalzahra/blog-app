@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :system do
-   let(:user) { User.new(name: 'Tom', posts_counter: 0, photo: 'https://picsum.photos/300/300', bio: 'Teacher') }
+  let(:user) { User.new(name: 'Tom', posts_counter: 0, photo: 'https://picsum.photos/300/300', bio: 'Teacher') }
   subject do
     Post.create(author: user, title: 'Hello', text: 'This is my first post', likes_counter: 0,
                 comments_counter: 0)
@@ -14,11 +14,11 @@ RSpec.describe Post, type: :system do
   before { user.save }
   before { comment.save }
 
-   describe 'index page' do
+  describe 'index page' do
     it 'show the user profile picture' do
       visit "/users/#{user.id}/posts"
       sleep(4)
-      expect(page.find("img")['src']).to have_content user.photo
+      expect(page.find('img')['src']).to have_content user.photo
     end
     it 'shows the User name' do
       visit "/users/#{user.id}/posts"
@@ -28,7 +28,7 @@ RSpec.describe Post, type: :system do
     it 'shows the posts counter from user profile' do
       visit "/users/#{user.id}/posts"
       sleep(2)
-      expect(page.find(".post-num")).to have_content user.posts_counter.to_s
+      expect(page.find('.post-num')).to have_content user.posts_counter.to_s
     end
     it 'shows the post title on posts#index' do
       visit "/users/#{user.id}/posts"
@@ -67,7 +67,7 @@ RSpec.describe Post, type: :system do
       expect(page).to have_current_path("/users/#{user.id}/posts/#{subject.id}", ignore_query: true) # Verify the redirection to user show page
     end
   end
-   describe 'show page' do
+  describe 'show page' do
     it 'shows the post title on posts#show' do
       visit "/users/#{user.id}/posts/#{subject.id}"
       expect(page).to have_content subject.title

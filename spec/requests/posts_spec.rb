@@ -22,22 +22,22 @@ RSpec.describe 'Posts', type: :request do
   end
 
   describe 'GET /show' do
-  let(:user) { User.create(name: 'Tom', posts_counter: 0) }
-  let(:post) { Post.create(author: user, title: 'Hello', comments_counter: 0, likes_counter: 0) }
+    let(:user) { User.create(name: 'Tom', posts_counter: 0) }
+    let(:post) { Post.create(author: user, title: 'Hello', comments_counter: 0, likes_counter: 0) }
 
-  it 'renders show template' do
-    get "/users/#{user.id}/posts/#{post.id}"
-    expect(response).to render_template(:show)
-  end
+    it 'renders show template' do
+      get "/users/#{user.id}/posts/#{post.id}"
+      expect(response).to render_template(:show)
+    end
 
-  it 'returns http success' do
-    get "/users/#{user.id}/posts/#{post.id}"
-    expect(response).to be_successful
-  end
+    it 'returns http success' do
+      get "/users/#{user.id}/posts/#{post.id}"
+      expect(response).to be_successful
+    end
 
-  it 'Test if /users/:user_id/posts/:id is rendering the text' do
-    get "/users/#{user.id}/posts/#{post.id}"
-    expect(response.body).to include('Comments', 'Add a comment')
+    it 'Test if /users/:user_id/posts/:id is rendering the text' do
+      get "/users/#{user.id}/posts/#{post.id}"
+      expect(response.body).to include('Comments', 'Add a comment')
+    end
   end
-end
 end
