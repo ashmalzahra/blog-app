@@ -66,7 +66,8 @@ card.each-user {
   margin: 0;
 }
 
-section.user, section.change-pass,
+section.user,
+section.change-pass,
 section.forget,
 section.login,
 section.user-new {
@@ -208,11 +209,13 @@ a {
   width: 100%;
 }
 
-.input-container, .field {
+.input-container,
+.field {
   width: 100%;
 }
 
-.field input, .input-container input {
+.field input,
+.input-container input {
   height: 28px;
   width: 100%;
   border: 2px solid black;
