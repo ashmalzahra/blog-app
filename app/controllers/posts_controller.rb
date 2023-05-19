@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @user = User.find(params[:user_id])
@@ -30,4 +31,27 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    @user = @post.author
+    delete_post_and_its_related_objects(@post)
+    @user.posts_counter -= 1
+    flash[:notice] = 'Post deleted successfully'
+
+    redirect_to user_posts_path(@user) if @user.save
+  end
+
+  private
+
+  def delete_post_and_its_related_objects(post)
+    if post.comments_counter.positive? || post.likes_counter.positive?
+      post.comments.each(&:destroy) if post.comments_counter.positive?
+      post.likes.each(&:destroy) if post.likes_counter.positive?
+    end
+    post.destroy
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :text)
+  end
 end
