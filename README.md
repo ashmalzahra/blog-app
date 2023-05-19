@@ -156,11 +156,6 @@ rspec
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Setup and controllers.**
-- [ ] **Controllers specs.**
-- [ ] **Integration specs for Views and fixing n+1 problems.**
-- [ ] **Add Devise.**
-- [ ] **Add authorization rules.**
 - [ ] **Add API endpoints.**
 - [ ] **API documentation.**
 
