@@ -16,7 +16,7 @@ gem 'sprockets-rails'
 
 gem 'cancancan'
 
-gem "tailwindcss-rails", "~> 2.0"
+gem 'tailwindcss-rails', '~> 2.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 
