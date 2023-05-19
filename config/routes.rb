@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  post :auth, to: 'authentication#create'
-
-  resources :users, only: [] do
-    resources :posts, only: [:index] do
-      resources :comments, only: [:index, :create]
+  namespace :api do
+    namespace :v1 do
+      post :auth, to: 'authentication#create'
+      resources :users, only: [] do
+        resources :posts, only: [:index] do
+          resources :comments, only: [:index, :create]
+        end
+      end
     end
   end
 
