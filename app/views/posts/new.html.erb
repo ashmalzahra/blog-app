@@ -1,15 +1,15 @@
-<section class="user">
-  <h1>New post </h1>
-  <%= form_with url: 'create', method: :post, :class => 'main-form', local: true, scope: :post do |f| %>
-    <div class="input-container">
-      <%= f.label :title %><br>
-      <%= f.text_field :title %>
+<div class="bg-white p-6 rounded-lg">
+  <%= form_with model: @post, url: user_posts_path, data: { turbo: false } do |form| %>
+    <div class="mb-4">
+      <%= form.label :title, class: "block text-gray-700 font-medium mb-2" %>
+      <%= form.text_field :title, class: "w-full border border-gray-400 p-2 rounded-lg" %>
     </div>
-
-    <div class="input-container">
-      <%= f.label :text %><br>
-      <%= f.text_area :text,  :maxlength => 250 %>
+    <div class="mb-4">
+      <%= form.label :text, class: "block text-gray-700 font-medium mb-2" %>
+      <%= form.text_area :text, class: "w-full h-32 border border-gray-400 p-2 rounded-lg" %>
     </div>
-    <%= f.submit "Create post", :class => 'second-btn'%>
+    <div class="text-center">
+      <%= form.submit "Create Post", class: "bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600" %>
+    </div>
   <% end %>
-</section>
+</div>

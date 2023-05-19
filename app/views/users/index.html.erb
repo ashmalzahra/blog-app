@@ -1,22 +1,23 @@
-<section class="users-index">
-    <h1> Welcome to my blog app!</h1>
-    <div class="users-container">
-        <% @users.each do |user| %>
-            <%= link_to "/users/#{user.id}", :class => 'user-link', remote: false do %>
-            <card class="each-user">
-                <img id="user-<%= user.id %>" src='<%= user.photo %>'></img>
-                <div class="user-info">
-                      <h2><span><%= user.name %></span></h2><br>
-                     <h4 id="counter-<%= user.id %>" class="post-num">Number of posts: <%= user.posts_counter %> </h4>
-                </div>
-            </card>
-            <% end %>
+<div class="flex flex-col gap-4">
+<% @users.reverse.each do |user| %>
+    <div class="user">
+        <%= link_to user_path(user) do %>
+          <div class="flex flex-col p-4 items-center border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl bg-gradient-to-tr from-[#3FBFED] via-[#35A5E5] to-[#319AE0]">
+              <% if user.photo? %>
+                  <%= image_tag user.photo, class: "h-32 w-32 object-cover rounded-lg md:w-48 md:h-auto" %>
+              <% else %>
+                  <%= image_tag "https://avatars.dicebear.com/api/adventurer/4.svg", class: "h-10 w-10 object-cover rounded-lg md:w-48 md:h-auto" %>
+              <% end %>
+              <div class="flex flex-col justify-between p-4 leading-normal">
+                  <h5 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  <%= user.name %>
+                  </h5>
+                  <p class="mb-3 text-xl font-normal text-gray-700">
+                      Number of posts: <%= user.posts_counter %>
+                  </p>
+              </div>
+          </div>
         <% end %>
-      <div class="main-btn">
-      <%= link_to "/posts/new", remote: false do %>
-        <p>Create a post</p>
-      <% end %>
     </div>
-     <%= link_to "Sign Out", destroy_user_session_path, 'data-turbo-method': :delete%>
-    </div>
-</section>
+<% end %>
+</div>

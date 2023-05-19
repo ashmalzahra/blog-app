@@ -1,36 +1,33 @@
 class PostsController < ApplicationController
-  def index
-    @user = User.includes({ posts: { comments: :author } }).find(params[:user_id])
-    @posts = @user.posts
-  end
 
-  def show
-    @like_state = false
-    @post = Post.find(params[:id])
-    @author = @post.author
-    @post.likes.each do |like|
-      @like_state = like.author_id == current_user.id
-    end
+  def index
+    @user = User.find(params[:user_id])
+    @posts = @user.posts.includes([:comments])
   end
 
   def new
-    new_post = Post.new
-    respond_to do |format|
-      format.html { render :new, locals: { post: new_post } }
-    end
+    @post = Post.new
+    @current_user = current_user
+  end
+
+  def show
+    @user = User.find(params[:user_id])
+    @post = Post.find(params[:id])
+    @comments = Comment.includes([:author]).where(post_id: params[:id]).order(created_at: :desc).limit(5)
   end
 
   def create
-    @new_post = Post.new(params.require(:post).permit(:text, :title))
-    @new_post.author = current_user
-    @new_post.likes_counter = 0
-    @new_post.comments_counter = 0
-    respond_to do |format|
-      if @new_post.save
-        format.html { redirect_to "/users/#{current_user.id}/posts", notice: 'Post was successfully created.' }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    @post = Post.new(post_params)
+    @post.author = current_user
+    @post.likes_counter = 0
+    @post.comments_counter = 0
+    if @post.save
+      flash[:notice] = 'Post created successfully'
+      redirect_to user_posts_path(current_user)
+    else
+      flash[:alert] = 'Post creation failed'
+      render :new, status: :unprocessable_entity
     end
   end
+
 end

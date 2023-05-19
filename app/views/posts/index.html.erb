@@ -1,38 +1,51 @@
-<section class="user">
-  <card class="each-user">
-    <img src='<%= @user.photo %>'>
-    <div class="user-info">
-    <h2><%= @user.name %></h2><br>
-    <h4 class="post-num">Number of posts: <%= @user.posts_counter %> </h4>
-    </div>
-  </card>
-  <div class="posts-container">
-    <% @posts.each do |post| %>
-      <%= link_to "/users/#{@user.id}/posts/#{post.id}", remote: false do %>
-        <div class="comment-box">
-          <card class="post-data">
-            <div class="post-info">
-              <h2><span id="test-<%= post.id %>"> <%= post.title %> </span></h2>
-              <p> <%= post.text %> </p>
-              <div class="counters">
-                <h5 id="comments-<%= post.id %>" class="comment-num">Comments: <%= post.comments_counter %> </h5>
-                <h5 id="likes-<%= post.id %>"class="like-num">Likes: <%= post.likes_counter %> </h5>
-              </div>
-            </div>
-          </card>
-          <div class="comments-box">
-            <% if post.comments.empty? %>
-              <p> There are no comments on this post </p>
-            <% end %>
-            <% post.comments.each do |comment| %>
-              <p> <%= comment.author.name %>: <%= comment.text %> </p>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+<div class="flex flex-col">
+<div class="p-6 rounded-lg shadow-md bg-gradient-to-tr from-[#3FBFED] via-[#35A5E5] to-[#319AE0]">
+  <div class="flex items-center mb-6">
+    <% if @user.photo? %>
+        <%= image_tag @user.photo, class: "h-48 w-48 rounded-full object-cover" %>
+    <% else %>
+        <%= image_tag "https://avatars.dicebear.com/api/adventurer/4.svg", class: "h-48 w-48 rounded-full object-cover" %>
     <% end %>
+    <div class="ml-4 flex flex-col gap-4">
+      <h2 class="text-4xl text-gray-900 font-bold"><%= @user.name %></h2>
+      <p class="text-2xl text-gray-800"><%= @user.bio %></p>
+      <p class="text-lg text-gray-800">Joined <%= time_ago_in_words(@user.created_at) %> ago</p>
+      <p class="text-lg text-gray-800">Number of posts: <%= @user.posts_counter %></p>
+    </div>
   </div>
-  <div class="main-btn">
-    <p>Pagination</p>
+</div>
+<h3 class="text-lg font-bold text-gray-800 mt-4">Posts</h3>
+<div class="flex flex-col">
+<div class="bg-white p-6 rounded-lg shadow-md bg-[url('https://images.unsplash.com/photo-1601436155198-2ebfea8117b0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Ymx1ZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60')]">
+<% @user.posts.includes([:comments]).each do |post| %>
+  <div class="mb-4 shadow-md p-4 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 border border-gray-200">
+    <a href="<%= user_post_path(@user, post) %>" class="text-lg font-medium text-blue-600 hover:underline">
+      <%= post.title %>
+    </a>
+    <p class="text-gray-800">
+      <%= post.text %>
+    </p>
+    <p class="text-gray-600">
+      <%= time_ago_in_words(post.created_at) %> ago
+    </p>
+    <div class="flex justify-end gap-5 items-end mt-2">
+    <p>Comments:<%= post.comments_counter %></p>
+    <p>Likes: <%= post.likes_counter %></p>
+    </div>
+      <% if post.comments.empty? %>
+  <p class="my-8">There are no comments for this post.</p>
+<% else %>
+  <% post.comments.includes([:author]).each do |comment| %>
+    <div class="bg-white rounded-lg p-4 shadow-md">
+      <p class="text-gray-700 font-medium"><%= comment.text %></p>
+      <p class="text-gray-500 font-medium">by <%= comment.author.name %></p>
+      <hr class="my-4">
+    </div>
+  <% end %>
+<% end %> 
+<hr class="my-4">
   </div>
-</section>
+<% end %>
+</div>
+</div>
+</div>

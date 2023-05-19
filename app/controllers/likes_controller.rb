@@ -1,12 +1,16 @@
 class LikesController < ApplicationController
-  def add_like
-    @new_like = Like.new(author: current_user, post: Post.find(params[:id]))
-    respond_to do |format|
-      if @new_like.save
-        format.html { redirect_to "/users/#{params[:user_id]}/posts/#{params[:id]}", notice: 'You Liked this post!' }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+  def create
+    @like = Like.new
+    @post = Post.find(params[:post_id])
+    @user = User.find(params[:user_id])
+    @like.post = @post
+    @like.author = current_user
+    if @like.save
+      flash[:notice] = 'Like was successfully created.'
+      redirect_to user_post_path(@user, @post)
+    else
+      flash[:alert] = 'Like was not created.'
+      render :new, status: :unprocessable_entity
     end
   end
 end
